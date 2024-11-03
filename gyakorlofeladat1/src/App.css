@@ -1,0 +1,10 @@
+.App {
+  text-align: left;
+}
+
+.Receipt{
+  margin: 1rem 1rem 1rem 1rem;
+  border: 3px dashed black;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  width: 50%
+}
