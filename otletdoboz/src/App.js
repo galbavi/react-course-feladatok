@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import ListPage from "./screens/list/ListPage";
+import { AppBar, Container } from "@mui/material";
+import AppMenu from "./components/AppMenu";
+import UserPage from "./screens/user/Me";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NewPage from "./screens/new/NewPage";
+import OneSuggestion from "./components/OneSuggestion";
+import DetailPage from "./screens/detail/DetailPage";
+import MePage from "./screens/me/Me";
+import Page404 from "./screens/404/Page404";
+import Providers from "./Providers";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Providers>
+        <AppMenu />
+        <br />
+        <Routes>
+          <Route path="/" element={<ListPage />} />
+          <Route path="/me" element={<MePage />} />
+          <Route path="/new" element={<NewPage />} />
+          <Route path="/suggestion/:id" element={<DetailPage />} />
+          <Route path="/user/:id" element={<UserPage />} />
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+      </Providers>
   );
 }
 
