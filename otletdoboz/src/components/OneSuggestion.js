@@ -9,9 +9,12 @@ import {
 } from "@mui/material";
 import { Favorite, FavoriteBorder, Delete } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { MODALS, useModals } from "../hooks/useModal";
 
 export default function OneSuggestion({ id, title, description }) {
   const navigate = useNavigate();
+  const {showModal} = useModals();
+
   return (
     <Grid2 xs={12} md={4} lg={3}>
       <Card>
@@ -25,12 +28,12 @@ export default function OneSuggestion({ id, title, description }) {
             variant={"outlined"}
             fullWidth
             onClick={() => {
-              navigate(`/suggestion/\${id}`);
+              navigate(`/suggestion/${id}`);
             }}
           >
             Details
           </Button>
-          <IconButton>
+          <IconButton >
             <Favorite />
           </IconButton>
           <IconButton>
