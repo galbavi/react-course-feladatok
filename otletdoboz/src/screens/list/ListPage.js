@@ -7,9 +7,8 @@ import { LoadingBlock } from "../../components/LoadingBlock";
 import { useNavigate } from "react-router-dom";
 
 export default function ListPage() {
-    const [list, setList] = useState([]);
     const navigate = useNavigate();
-    const [suggestions, loading, error ] = useApi(AXIOS_METHOD.POST, `/suggestions`, {
+    const [suggestionResult, loading, error ] = useApi(AXIOS_METHOD.POST, `/suggestions`, {
         "author": "",
         "limit": 5,
         "cursor": ""
@@ -25,6 +24,6 @@ export default function ListPage() {
     }
 
     return <Grid2 container spacing={2}>
-        {suggestions.suggestions.map((suggestion) => <OneSuggestion {...suggestion}/>)}
+        {suggestionResult.suggestions.map((suggestion) => <OneSuggestion {...suggestion}/>)}
     </Grid2>
 }

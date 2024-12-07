@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useState } from "react";
 import LoginModal from "../modals/LoginModal";
 import RegModal from "../modals/RegModal";
 import ConfirmModal from "../modals/ConfirmModal";
+import ErrorModal from "../modals/ErrorModal";
 
 const ModalContext = createContext();
 ModalContext.displayName = "ModalContext";
@@ -11,6 +12,7 @@ export const MODALS = {
   CONFIRM_DELETE: "CONFIRM_DELETE",
   LOGIN: "LOGIN",
   REG: "REG",
+  ERROR: "ERROR",
 };
 
 export function Modals() {
@@ -22,11 +24,13 @@ export function Modals() {
         };
         switch (context.currentModal) {
           case MODALS.LOGIN:
-            return <LoginModal onClose={onClose}/>;
+            return <LoginModal onClose={onClose} {...context.modalProps}/>;
           case MODALS.REG:
-            return <RegModal onClose={onClose}/>;
+            return <RegModal onClose={onClose} {...context.modalProps}/>;
           case MODALS.CONFIRM_DELETE:
-            return <ConfirmModal onClose={onClose}/>;
+            return <ConfirmModal onClose={onClose} {...context.modalProps}/>;
+          case MODALS.ERROR:
+            return <ErrorModal onClose={onClose} {...context.modalProps}/>;
           case MODALS.NONE:
           default:
             return null;
@@ -38,16 +42,18 @@ export function Modals() {
 
 export function ModalContextProvider({ children }) {
   const [currentModal, setCurrentModal] = useState(false);
+  const [modalProps, setModalProps] = useState({});
 
   const showModal = useCallback(
-    (newModal) => {
+    (newModal, newModalProps = {}) => {
       setCurrentModal(newModal);
+      setModalProps(newModalProps);
     },
-    [setCurrentModal]
+    [setCurrentModal,setModalProps]
   );
 
   return (
-    <ModalContext.Provider value={{ currentModal, showModal }}>
+    <ModalContext.Provider value={{ currentModal, showModal, modalProps }}>
       {children}
       <Modals />
     </ModalContext.Provider>

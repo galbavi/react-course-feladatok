@@ -1,6 +1,5 @@
 import {Grid2, Typography} from "@mui/material";
 import OneSuggestion from "../../components/OneSuggestion";
-import { useAuth } from "../../hooks/useAuth";
 import { LoadingBlock } from "../../components/LoadingBlock";
 import { useNavigate, useParams } from "react-router-dom";
 import { AXIOS_METHOD, useApi } from "../../hooks/useApi";

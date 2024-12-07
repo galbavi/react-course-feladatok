@@ -11,7 +11,7 @@ import { Favorite, FavoriteBorder, Delete } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { MODALS, useModals } from "../hooks/useModal";
 
-export default function OneSuggestion({ id, title, description }) {
+export default function OneSuggestion({ id, title, description, onDelete }) {
   const navigate = useNavigate();
   const {showModal} = useModals();
 
@@ -36,9 +36,9 @@ export default function OneSuggestion({ id, title, description }) {
           <IconButton >
             <Favorite />
           </IconButton>
-          <IconButton>
+          { onDelete && <IconButton onClick={onDelete}>
             <Delete />
-          </IconButton>
+          </IconButton>}
         </CardActions>
       </Card>
     </Grid2>

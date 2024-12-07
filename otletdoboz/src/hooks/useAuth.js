@@ -18,7 +18,7 @@ export function AuthContextProvider({ children }) {
         handleLoginResult({token: false, user: {}});
     }, [handleLoginResult]);
 
-    return <AuthContext.Provider value={{authToken, sessionUser, handleLoginResult, logout}}>{children}</AuthContext.Provider>;
+    return <AuthContext.Provider value={{authToken, sessionUser, handleLoginResult, logout, setSessionUser}}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
